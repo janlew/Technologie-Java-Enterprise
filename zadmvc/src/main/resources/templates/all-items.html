@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title>JANKA Warehouse</title>
+</head>
+<body>
+<h1>Welcome to my warehouse!</h1>
+
+<h2>There are <span th:text="${items.size()}"></span> items in our warehouse</h2>
+<div th:switch="${items}">
+    <h2 th:case="null">No items in warehouse</h2>
+    <div th:case="*">
+        <h2>Products</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td><a th:href="@{/item/update/{id}(id=${item.id})}">Edit</a></td>
+                <td><a th:href="@{/item/remove/{id}(id=${item.id})}">Remove</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/item/add">Add new item</a></p>
+    <p><a href="/item/worth">Show total value of all products in warehouse</a></p>
+    <p th:text="${worth}"></p>
+    <p><a th:href="@{/}">Home page</a></p>
+</div>
+
+</body>

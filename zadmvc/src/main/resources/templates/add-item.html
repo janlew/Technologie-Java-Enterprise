@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title>JANKA Warehouse</title>
+</head>
+<body>
+<h1>Add item</h1>
+<form action="#" th:action="@{/item/added}" th:object="${item}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Item name">
+
+    <label for="price">Price</label>
+    <input type="number" step="0.01" th:field="*{price}" id="price" placeholder="Price">
+    <p></p>
+    <label for="quantity">Quantity</label>
+    <input type="number" step="1" th:field="*{quantity}" id="quantity" placeholder="Quantity">
+    <p></p>
+    <input type="submit" value="Add item">
+</form>
+
+<p><a th:href="@{/item}">Back</a></p>
+</body>
+</html>
